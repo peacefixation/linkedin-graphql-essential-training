@@ -57,6 +57,27 @@ query {
 }
 ```
 
+### Queries using fragment
+
+```
+query {
+  widget1: getProduct(id:"63dda421816c193ad6047b28") {
+		...widgetFragment
+  }
+  widget2: getProduct(id:"63dda459ea190685d61fccb8") {
+		...widgetFragment
+  }
+}
+
+  
+fragment widgetFragment on Product {
+  name
+  price
+  description
+  soldout
+}
+```
+
 ### Mutations
 
 ```

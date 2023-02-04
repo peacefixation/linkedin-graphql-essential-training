@@ -42,6 +42,21 @@ query {
 }
 ```
 
+### Queries using alias
+
+```
+query {
+  price: getProduct(id:"63dda421816c193ad6047b28") {
+    name
+    price
+  }
+  description: getProduct(id:"63dda459ea190685d61fccb8") {
+    name
+    description
+  }
+}
+```
+
 ### Mutations
 
 ```

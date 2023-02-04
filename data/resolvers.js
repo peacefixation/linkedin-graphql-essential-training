@@ -7,7 +7,7 @@ export const resolvers = {
             Widgets.findById({ _id: id }, (err, product) => {
                 if (err) reject(err)
                 else resolve(product);
-            })
+            });
         });
     },
     createProduct: ({ input }) => {
@@ -23,12 +23,23 @@ export const resolvers = {
         newWidget.id = newWidget._id;
 
         return new Promise((resolve) => {
-            newWidget.save((err) => {
+            newWidget.save((err, widget) => {
                 if(err) reject(err)
-                else resolve(newWidget)
-            })
+                    else resolve(widget);
+                });
         })
-    }
+    },
+    updateProduct: ({ input }) => {
+        return new Promise((resolve) => {
+            Widgets.findOneAndUpdate(
+                { _id: input.id },
+                input,
+                { new: true }, (err, widget) => {
+                    if(err) reject(err)
+                    else resolve(widget);
+                });
+        })
+    },
 };
 
 export default resolvers;

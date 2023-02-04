@@ -27,18 +27,23 @@ export const resolvers = {
                 if(err) reject(err)
                     else resolve(widget);
                 });
-        })
+        });
     },
     updateProduct: ({ input }) => {
         return new Promise((resolve) => {
-            Widgets.findOneAndUpdate(
-                { _id: input.id },
-                input,
-                { new: true }, (err, widget) => {
+            Widgets.findOneAndUpdate({ _id: input.id }, input, { new: true }, (err, widget) => {
                     if(err) reject(err)
                     else resolve(widget);
                 });
-        })
+        });
+    },
+    deleteProduct: ({ id }) => {
+        return new Promise((resolve) => {
+            Widgets.remove({ _id: id }, (err) => {
+                if(err) reject(err)
+                else resolve("Successfully deleted widget")
+            });
+        });
     },
 };
 
